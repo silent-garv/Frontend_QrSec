@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0f172a" />
+      <stop offset="1" stop-color="#061021" />
+    </linearGradient>
+    <style>
+      .bg { fill: url(#g); }
+      .title { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; fill: #00E5B4; font-weight: 700; font-size: 56px; }
+      .subtitle { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; fill: #9CA3AF; font-size: 28px; }
+      .badge { fill: rgba(255,255,255,0.04); stroke: rgba(255,255,255,0.06); }
+      .logo { fill: #00E5B4; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="630" rx="24"/>
+
+  <!-- Left badge -->
+  <g transform="translate(68,86)">
+    <rect class="badge" width="280" height="280" rx="20" />
+    <g transform="translate(36,36)">
+      <circle class="logo" cx="88" cy="88" r="62" />
+      <g transform="translate(58,58)">
+        <rect x="-18" y="-18" width="36" height="36" rx="6" fill="#061021" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Text -->
+  <g transform="translate(380,180)">
+    <text class="title">QrSec — URL &amp; QR Security</text>
+    <text class="subtitle" y="64">Instant link analysis • VirusTotal &amp; Safe Browsing</text>
+  </g>
+
+  <!-- small note -->
+  <g transform="translate(380,320)">
+    <text class="subtitle" y="64">Scan safely before you click.</text>
+  </g>
+</svg>
