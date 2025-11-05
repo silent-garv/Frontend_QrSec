@@ -101,10 +101,10 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
+  <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <div className="inline-flex items-center justify-center w-10 h-10 bg-gradient-primary rounded-lg shadow-glow">
                 <Shield className="h-6 w-6 text-primary-foreground" />
               </div>
@@ -119,10 +119,10 @@ const Dashboard = () => {
                 <Shield className="h-4 w-4 mr-2" />
                 New Scan
               </Button>
-              <Button variant="ghost" onClick={handleLogout}>
+              {/* <Button variant="ghost" onClick={handleLogout}>
                 <LogOut className="h-4 w-4 mr-2" />
                 Sign Out
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
@@ -180,25 +180,25 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Scan History */}
-        <Card className="border-border/50">
+  {/* Scan History */}
+  <Card className="border-border/50 bg-scan-history">
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-primary" />
                 Scan History
               </CardTitle>
-              <div className="flex items-center gap-3">
-                <div className="relative">
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <div className="relative flex-1 sm:flex-none">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search URLs..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 w-64 bg-input/50"
+                    className="pl-10 w-full sm:w-64 bg-input/50"
                   />
                 </div>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="flex-shrink-0">
                   <Download className="h-4 w-4 mr-2" />
                   Export
                 </Button>
@@ -216,9 +216,9 @@ const Dashboard = () => {
                 filteredHistory.map((scan) => (
                   <div
                     key={scan.id}
-                    className="flex items-center justify-between p-4 border border-border/50 rounded-lg hover:bg-muted/30 transition-colors"
+                    className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 border border-border/50 rounded-lg hover:bg-muted/30 transition-colors"
                   >
-                    <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-4 flex-1 w-full">
                       <div className="flex items-center gap-2">
                         {getStatusIcon(scan.status)}
                         <Badge variant="outline" className="text-xs">
@@ -232,10 +232,10 @@ const Dashboard = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 mt-3 md:mt-0 md:ml-6">
                       <div className="text-right">
                         <p className="text-sm font-medium">Score: {scan.score}/100</p>
-                        <div className="w-20 h-2 bg-muted rounded-full overflow-hidden">
+                        <div className="w-20 sm:w-28 md:w-36 h-2 bg-muted rounded-full overflow-hidden">
                           <div
                             className={`h-full transition-all ${
                               scan.status === 'safe' ? 'bg-success' :
@@ -246,7 +246,7 @@ const Dashboard = () => {
                           />
                         </div>
                       </div>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" className="mt-2 md:mt-0">
                         View Details
                       </Button>
                     </div>

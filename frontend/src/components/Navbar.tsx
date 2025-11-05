@@ -90,20 +90,21 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full border-b border-border/50 bg-card/40 dark:bg-gray-900 backdrop-blur-sm">
+  <header className="w-full header-navbar border-b border-border/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           <div className="flex items-center gap-4">
-            <Link to="/" className="font-semibold text-lg">QrSec</Link>
+            <Link to="/" className="font-semibold text-lg brand">QrSec</Link>
             <nav className="hidden sm:flex gap-2">
-              <Link to="/scan" className="text-sm text-muted-foreground hover:text-primary">Scan</Link>
-              <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-primary">Dashboard</Link>
+              <Link to="/scan" className="text-sm nav-link hover:opacity-90">Scan</Link>
+              <Link to="/dashboard" className="text-sm nav-link hover:opacity-90">Dashboard</Link>
+              <Link to="/learn" className="text-sm nav-link hover:opacity-90">Security Guide</Link>
             </nav>
           </div>
 
           <div className="hidden sm:flex items-center gap-3">
             {/* Always show install button for debug/testing */}
-            <Button size="sm" variant="outline" onClick={async () => {
+            <Button size="sm" variant="outline" className="nav-btn" onClick={async () => {
               const dp = (window as any).__deferredPrompt;
               console.log('DEBUG: deferredPrompt', dp);
               if (dp) {
@@ -135,22 +136,22 @@ const Navbar = () => {
               variant="outline"
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
-              className="ml-2"
+              className="ml-2 nav-btn"
             >
               {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
             </Button>
             {user ? (
               <>
-                <span className="text-sm text-muted-foreground">{user.displayName ?? user.email}</span>
-                <Button variant="ghost" size="sm" onClick={handleSignOut}>Sign Out</Button>
+                <span className="text-sm nav-link">{user.displayName ?? user.email}</span>
+                <Button variant="ghost" size="sm" className="nav-btn" onClick={handleSignOut}>Sign Out</Button>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <Button size="sm">Sign In</Button>
+                  <Button size="sm" className="nav-btn">Sign In</Button>
                 </Link>
                 <Link to="/signup">
-                  <Button variant="ghost" size="sm">Sign Up</Button>
+                  <Button variant="ghost" size="sm" className="nav-btn">Sign Up</Button>
                 </Link>
               </>
             )}
@@ -171,23 +172,24 @@ const Navbar = () => {
 
       {/* Mobile menu panel */}
       {menuOpen && (
-        <div className="sm:hidden border-t border-border/50 bg-card/40 dark:bg-gray-900">
+        <div className="sm:hidden border-t border-border/50 header-navbar">
           <div className="px-4 pt-3 pb-4 space-y-2">
-            <Link to="/scan" onClick={() => setMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-primary">Scan</Link>
-            <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-primary">Dashboard</Link>
+            <Link to="/scan" onClick={() => setMenuOpen(false)} className="block text-sm nav-link hover:opacity-90">Scan</Link>
+            <Link to="/dashboard" onClick={() => setMenuOpen(false)} className="block text-sm nav-link hover:opacity-90">Dashboard</Link>
+            <Link to="/learn" onClick={() => setMenuOpen(false)} className="block text-sm nav-link hover:opacity-90">Security Guide</Link>
             <div className="pt-2">
               {user ? (
                 <>
-                  <div className="text-sm text-muted-foreground mb-2">{user.displayName ?? user.email}</div>
-                  <Button size="sm" className="w-full" onClick={handleSignOut}>Sign Out</Button>
+                  <div className="text-sm nav-link mb-2">{user.displayName ?? user.email}</div>
+                  <Button size="sm" className="w-full nav-btn" onClick={handleSignOut}>Sign Out</Button>
                 </>
               ) : (
                 <div className="flex gap-2">
                   <Link to="/login" onClick={() => setMenuOpen(false)} className="flex-1">
-                    <Button size="sm" className="w-full">Sign In</Button>
+                    <Button size="sm" className="w-full nav-btn">Sign In</Button>
                   </Link>
                   <Link to="/signup" onClick={() => setMenuOpen(false)} className="flex-1">
-                    <Button variant="ghost" size="sm" className="w-full">Sign Up</Button>
+                    <Button variant="ghost" size="sm" className="w-full nav-btn">Sign Up</Button>
                   </Link>
                 </div>
               )}
@@ -196,7 +198,7 @@ const Navbar = () => {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="w-full"
+                  className="w-full nav-btn"
                   onClick={toggleTheme}
                   aria-label="Toggle dark mode"
                 >
@@ -205,7 +207,7 @@ const Navbar = () => {
               </div>
               {installAvailable && (
                 <div className="pt-2">
-                  <Button size="sm" className="w-full" onClick={async () => {
+                  <Button size="sm" className="w-full nav-btn" onClick={async () => {
                     const dp = (window as any).__deferredPrompt;
                     if (!dp) return;
                     try {
