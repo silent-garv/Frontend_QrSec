@@ -1,17 +1,20 @@
-// Use the correct backend URL based on environment
-const API_URL = import.meta.env.PROD
-  ? 'https://qr-scan-shield-backend.vercel.app/api/chat'  // Production backend
-  : 'http://localhost:3000/api/chat';  // Development backend
+const BACKEND_URLS = {
+  development: 'http://localhost:3000',
+  production: 'https://qr-scan-shield-backend.vercel.app'
+};
+
+const baseUrl = BACKEND_URLS[import.meta.env.MODE] || BACKEND_URLS.production;
+const API_URL = `${baseUrl}/api/chat`;
 
 export async function sendMessage(message: string): Promise<string> {
   try {
-    console.log('Sending message to:', API_URL);
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
+      credentials: 'omit', // Don't send credentials for cross-origin requests
       body: JSON.stringify({ message }),
     });
 
