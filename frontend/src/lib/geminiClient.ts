@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.PROD
-  ? 'https://qr-sec-backend.vercel.app/api/chat'  // Production backend URL
+  ? `${import.meta.env.VITE_API_BASE_URL}/api/chat`
   : 'http://localhost:3000/api/chat';
 
 export async function sendMessage(message: string): Promise<string> {
