@@ -218,61 +218,42 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 max-w-screen-2xl items-center">
-          <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-            <div className="flex items-center space-x-3">
+      <header className="w-full header-navbar border-b border-border/50 backdrop-blur-sm sticky top-0 z-50 bg-background/95">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14">
+            <div className="flex items-center gap-4">
               <div className="inline-flex items-center justify-center w-9 h-9 bg-gradient-primary rounded-lg shadow-glow">
                 <Shield className="h-5 w-5 text-primary-foreground" />
               </div>
-              <h1 className="hidden sm:block text-lg font-semibold bg-gradient-primary bg-clip-text text-transparent">
-                QrSec Dashboard
-              </h1>
+              <span className="font-semibold text-lg">QrSec</span>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <Button 
-                onClick={handleNewScan} 
+
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={handleNewScan}
                 size="sm"
-                className="bg-gradient-primary hover:opacity-90 hidden sm:flex"
+                className="hidden sm:inline-flex bg-gradient-primary hover:opacity-90"
               >
-                <Shield className="h-4 w-4 mr-2" />
+                <Shield className="mr-2 h-4 w-4" />
                 New Scan
               </Button>
-              <Button 
+              <Button
                 onClick={handleNewScan}
                 size="icon"
                 className="bg-gradient-primary hover:opacity-90 sm:hidden"
               >
                 <Shield className="h-4 w-4" />
               </Button>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={handleLogout}
-                className="hidden sm:flex"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                onClick={handleLogout}
-                className="sm:hidden"
-              >
-                <LogOut className="h-4 w-4" />
-              </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container mx-auto max-w-7xl space-y-6 p-4 sm:p-6 lg:p-8">
         {/* Stats Overview */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-6">
           <Card className="border-border/50 hover:shadow-sm transition-shadow">
-            <CardContent className="pt-6">
+            <CardContent className="p-6">
               <div className="flex items-center justify-between space-x-2">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Total Scans</p>
@@ -464,12 +445,12 @@ const Dashboard = () => {
         {/* Scan Activity Bar Chart */}
         <Card className="border-border/50 mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-3">
               <BarChartIcon className="h-5 w-5 text-primary" />
               Daily Scan Distribution
             </CardTitle>
           </CardHeader>
-          <CardContent>
+            <CardContent className="p-6">
             <div className="h-[300px] mt-4">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
@@ -544,7 +525,10 @@ const Dashboard = () => {
             <div className="space-y-4">
               {filteredHistory.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground">
-                  <Activity className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <div className="flex flex-col items-center justify-center gap-4">
+                    <Activity className="h-12 w-12 opacity-50" />
+                    <p className="text-sm text-muted-foreground">No scans found matching your search.</p>
+                  </div>
                   <p>No scans found matching your search.</p>
                 </div>
               ) : (
@@ -609,7 +593,7 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="border-primary/20 bg-primary/5">
-            <CardContent className="pt-6">
+              <CardContent className="p-6">
               <div className="flex items-center gap-4">
                 <TrendingUp className="h-12 w-12 text-primary" />
                 <div>
@@ -642,7 +626,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
